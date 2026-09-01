@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SORS 2026 Scientific Program</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container" id="app-container">
+        <!-- Top Navigation Header -->
+        <header class="top-bar">
+            <div class="header-left">
+                <span class="publication-title">SORS 2026 Scientific Program</span>
+                <span id="page-counter" class="page-badge">pages 2 - 3 of 34</span>
+            </div>
+        </header>
+
+        <!-- Main Flipbook Stage -->
+        <main class="main-stage" id="main-stage">
+            <!-- Left Side Arrow -->
+            <button id="btn-prev" class="nav-arrow left" title="Previous Page" aria-label="Previous Page">
+                <svg width="24" height="40" viewBox="0 0 24 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 4L6 20L20 36" />
+                </svg>
+            </button>
+
+            <!-- Bottom-Left First Page Jump -->
+            <button id="btn-first" class="corner-nav-btn bottom-left" title="First Page (Home)" aria-label="First Page">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="4" x2="5" y2="20"></line>
+                    <polyline points="19 5 9 12 19 19"></polyline>
+                </svg>
+            </button>
+
+            <!-- Dedicated Measuring & Centering Book Container -->
+            <div class="book-container" id="book-container">
+                <!-- Flipbook Target Element -->
+                <div id="flipbook">
+                    <div class="page"><img src="images/page1.jpg" alt="Cover"></div>
+                    <div class="page"><img src="images/page2.jpg" alt="Page 2"></div>
+                    <div class="page"><img src="images/page3.jpg" alt="Page 3"></div>
+                    <div class="page"><img src="images/page4.jpg" alt="Page 4"></div>
+                    <div class="page"><img src="images/page5.jpg" alt="Page 5"></div>
+                    <div class="page"><img src="images/page6.jpg" alt="Page 6"></div>
+                    <div class="page"><img src="images/page7.jpg" alt="Page 7"></div>
+                    <div class="page"><img src="images/page8.jpg" alt="Page 8"></div>
+                    <div class="page"><img src="images/page9.jpg" alt="Page 9"></div>
+                    <div class="page"><img src="images/page10.jpg" alt="Page 10"></div>
+                    <div class="page"><img src="images/page11.jpg" alt="Page 11"></div>
+                    <div class="page"><img src="images/page12.jpg" alt="Page 12"></div>
+                    <div class="page"><img src="images/page13.jpg" alt="Page 13"></div>
+                    <div class="page"><img src="images/page14.jpg" alt="Page 14"></div>
+                    <div class="page"><img src="images/page15.jpg" alt="Page 15"></div>
+                    <div class="page"><img src="images/page16.jpg" alt="Page 16"></div>
+                    <div class="page"><img src="images/page17.jpg" alt="Page 17"></div>
+                    <div class="page"><img src="images/page18.jpg" alt="Page 18"></div>
+                    <div class="page"><img src="images/page19.jpg" alt="Page 19"></div>
+                    <div class="page"><img src="images/page20.jpg" alt="Page 20"></div>
+                    <div class="page"><img src="images/page21.jpg" alt="Page 21"></div>
+                    <div class="page"><img src="images/page22.jpg" alt="Page 22"></div>
+                    <div class="page"><img src="images/page23.jpg" alt="Page 23"></div>
+                    <div class="page"><img src="images/page24.jpg" alt="Page 24"></div>
+                    <div class="page"><img src="images/page25.jpg" alt="Page 25"></div>
+                    <div class="page"><img src="images/page26.jpg" alt="Page 26"></div>
+                    <div class="page"><img src="images/page27.jpg" alt="Page 27"></div>
+                    <div class="page"><img src="images/page28.jpg" alt="Page 28"></div>
+                    <div class="page"><img src="images/page29.jpg" alt="Page 29"></div>
+                    <div class="page"><img src="images/page30.jpg" alt="Page 30"></div>
+                    <div class="page"><img src="images/page31.jpg" alt="Page 31"></div>
+                    <div class="page"><img src="images/page32.jpg" alt="Page 32"></div>
+                    <div class="page"><img src="images/page33.jpg" alt="Page 33"></div>
+                    <div class="page"><img src="images/page34.jpg" alt="Back Cover"></div>
+                </div>
+            </div>
+
+            <!-- Right Side Arrow -->
+            <button id="btn-next" class="nav-arrow right" title="Next Page" aria-label="Next Page">
+                <svg width="24" height="40" viewBox="0 0 24 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4L18 20L4 36" />
+                </svg>
+            </button>
+
+            <!-- Bottom-Right Last Page Jump -->
+            <button id="btn-last" class="corner-nav-btn bottom-right" title="Last Page (End)" aria-label="Last Page">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="5 5 15 12 5 19"></polyline>
+                    <line x1="19" y1="4" x2="19" y2="20"></line>
+                </svg>
+            </button>
+        </main>
+    </div>
+
+    <!-- PageFlip Library -->
+    <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
