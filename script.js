@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnFirst = document.getElementById('btn-first');
     const btnLast = document.getElementById('btn-last');
 
-    const totalPages = 34;
+    const totalPages = flipbookEl.querySelectorAll('.page').length;
 
     // --- 1. Compute Exact Screen Fit Dimensions ---
     function computeBookDimensions() {
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
         minHeight: 200,
         maxHeight: 2000,
         maxShadowOpacity: 0.25,
-        showCover: true,      // Page 1 is single cover, Page 34 is single back cover
+        showCover: true,      // Page 1 is single cover, Pages 12 & 13 form the final 2-page spread
         usePortrait: false,   // Keeps 2-page landscape spread on desktop
         mobileScrollSupport: false,
         startPage: initialPage,
@@ -98,7 +98,8 @@ document.addEventListener('DOMContentLoaded', function () {
             bookContainer.classList.add('is-front-cover');
             bookContainer.classList.remove('is-back-cover');
             counterEl.innerText = `page 1 of ${totalPages}`;
-        } else if (pageIndex >= totalPages - 1) {
+        } else if (pageIndex >= totalPages - 1 && totalPages % 2 === 0) {
+            // When totalPages is even, the final page is an isolated single back cover
             bookContainer.classList.remove('is-front-cover');
             bookContainer.classList.add('is-back-cover');
             counterEl.innerText = `page ${totalPages} of ${totalPages}`;
@@ -121,7 +122,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // 3. Next & Last buttons visibility
-        const isLast = pageIndex >= totalPages - 1;
+        // For odd totalPages (e.g. 13), the final spread contains (totalPages - 1) and totalPages (pages 12 and 13)
+        const isLast = (pageIndex >= totalPages - 1) || (pageIndex + 2 >= totalPages);
         if (btnNext) {
             btnNext.style.opacity = isLast ? '0' : '1';
             btnNext.style.pointerEvents = isLast ? 'none' : 'auto';
@@ -138,6 +140,11 @@ document.addEventListener('DOMContentLoaded', function () {
         updateUI(e.data);
     });
 
+    pageFlip.on('init', () => {
+        updateUI(pageFlip.getCurrentPageIndex());
+    });
+
+    updateUI(pageFlip.getCurrentPageIndex());
     setTimeout(() => {
         updateUI(pageFlip.getCurrentPageIndex());
     }, 150);
@@ -155,7 +162,11 @@ document.addEventListener('DOMContentLoaded', function () {
             pageFlip.flipPrev();
         } else if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
             e.preventDefault();
-            pageFlip.flipNext();
+            const currentIdx = pageFlip.getCurrentPageIndex();
+            const isLast = (currentIdx >= totalPages - 1) || (currentIdx + 2 >= totalPages);
+            if (!isLast) {
+                pageFlip.flipNext();
+            }
         } else if (e.key === 'Home') {
             e.preventDefault();
             pageFlip.turnToPage(0);
