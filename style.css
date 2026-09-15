@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SORS 2026 Flipbook Viewer - Clean & Centered Theme
+   Global Allergy Connect Flipbook Viewer - Clean & Responsive Theme
    ========================================================================== */
 
 :root {
@@ -101,19 +101,19 @@ html, body {
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Center single Front Cover horizontally */
-.book-container.is-front-cover {
+/* Center single Front Cover horizontally only in desktop landscape mode */
+.book-container.is-landscape.is-front-cover {
     transform: translateX(-25%);
 }
 
-/* Center single Back Cover horizontally */
-.book-container.is-back-cover {
+/* Center single Back Cover horizontally only in desktop landscape mode */
+.book-container.is-landscape.is-back-cover {
     transform: translateX(25%);
 }
 
-/* Hide empty white page on left side during Front Cover */
-.book-container.is-front-cover .stf__item.--left,
-.book-container.is-front-cover .stf__block.--left {
+/* Hide empty white page on left side during Front Cover (desktop only) */
+.book-container.is-landscape.is-front-cover .stf__item.--left,
+.book-container.is-landscape.is-front-cover .stf__block.--left {
     opacity: 0 !important;
     visibility: hidden !important;
     box-shadow: none !important;
@@ -121,14 +121,19 @@ html, body {
     pointer-events: none !important;
 }
 
-/* Hide empty white page on right side during Back Cover */
-.book-container.is-back-cover .stf__item.--right,
-.book-container.is-back-cover .stf__block.--right {
+/* Hide empty white page on right side during Back Cover (desktop only) */
+.book-container.is-landscape.is-back-cover .stf__item.--right,
+.book-container.is-landscape.is-back-cover .stf__block.--right {
     opacity: 0 !important;
     visibility: hidden !important;
     box-shadow: none !important;
     background: transparent !important;
     pointer-events: none !important;
+}
+
+/* In mobile portrait mode, keep container centered without shift */
+.book-container.is-portrait {
+    transform: none !important;
 }
 
 #flipbook {
@@ -162,12 +167,14 @@ html, body {
     border: none;
     color: #888888;
     cursor: pointer;
-    z-index: 30;
+    z-index: 50;
     padding: 15px 10px;
-    transition: color 0.2s ease, transform 0.2s ease;
+    transition: color 0.2s ease, transform 0.2s ease, opacity 0.25s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .nav-arrow:hover {
@@ -191,12 +198,14 @@ html, body {
     border: none;
     color: #a1a1aa;
     cursor: pointer;
-    z-index: 30;
+    z-index: 50;
     padding: 6px;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, opacity 0.25s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .corner-nav-btn:hover {
@@ -209,4 +218,80 @@ html, body {
 
 .corner-nav-btn.bottom-right {
     right: 18px;
+}
+
+/* ==========================================================================
+   4. Mobile Portrait Mode (Matching Image 3 FlippingBook experience)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .top-bar {
+        height: 40px;
+        min-height: 40px;
+        padding: 0 14px;
+    }
+
+    .publication-title {
+        font-size: 13px;
+    }
+
+    .page-badge {
+        font-size: 11px;
+        padding: 2px 7px;
+    }
+
+    .main-stage {
+        padding: 6px 10px 10px 10px;
+        height: calc(100vh - 40px);
+    }
+
+    .book-container {
+        transform: none !important;
+    }
+
+    /* Clean chevron overlay matching FlippingBook (Image 3) */
+    .nav-arrow {
+        padding: 8px 4px;
+        color: #ffffff;
+        filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 1px rgba(0, 0, 0, 0.85));
+        width: 44px;
+        height: 60px;
+    }
+
+    .nav-arrow:hover {
+        color: #ffffff;
+        transform: translateY(-50%);
+    }
+
+    .nav-arrow:active {
+        transform: translateY(-50%) scale(0.92);
+    }
+
+    .nav-arrow.left {
+        left: 6px;
+    }
+
+    .nav-arrow.right {
+        right: 6px;
+    }
+
+    .nav-arrow svg {
+        width: 26px;
+        height: 42px;
+        stroke: #ffffff;
+        stroke-width: 2.8;
+    }
+
+    .corner-nav-btn {
+        bottom: 8px;
+        padding: 8px;
+        color: #888890;
+    }
+
+    .corner-nav-btn.bottom-left {
+        left: 8px;
+    }
+
+    .corner-nav-btn.bottom-right {
+        right: 8px;
+    }
 }
